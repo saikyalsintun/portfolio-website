@@ -1,777 +1,198 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saikyalsin Tun | Data Analyst Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sai Kyal Sin Tun — Portfolio</title>
+  <meta name="description" content="Portfolio of Sai Kyal Sin Tun — Data Analysis & UI/UX Projects">
   <style>
-    :root {
-      --gold: #ffd700;
-      --black: #111;
-      --gray: #f9f9f9;
+    :root{
+      --primary:#FF6B47; /* coral */
+      --accent:#D0A557; /* gold accent */
+      --muted:#394144; /* dark slate */
+      --bg:#ffffff;
+      --card:#f7f5f3;
+      --text:#222;
+      --glass: rgba(255,255,255,0.6);
+      --radius:14px;
+    }
+    .dark{
+      --bg:#0e0f10;
+      --card:#161616;
+      --text:#e8e6e3;
+      --glass: rgba(0,0,0,0.4);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,var(--bg),var(--card));color:var(--text);transition:background .3s,color .3s}
+    .container{max-width:1100px;margin:32px auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .avatar{width:96px;height:96px;border-radius:12px;object-fit:cover;border:3px solid var(--primary)}
+    h1{font-size:22px;margin:0}
+    .meta{color:var(--muted);font-size:13px}
+
+    .controls{display:flex;gap:10px;align-items:center}
+    .btn{background:linear-gradient(90deg,var(--primary),#ff8c6a);border:0;padding:10px 14px;border-radius:10px;color:white;cursor:pointer;font-weight:600}
+    .outline{background:transparent;border:1px solid var(--muted);padding:8px 12px;border-radius:10px;color:var(--text);cursor:pointer}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:24px}
+    .card{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+    .intro h2{margin-top:0}
+    .skills{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .skill{padding:8px 10px;border-radius:10px;background:var(--glass);font-weight:600}
+
+    .stats{display:flex;gap:12px;margin-top:14px}
+    .stat{flex:1;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.3));text-align:center}
+    .stat .n{font-size:18px;font-weight:800;color:var(--primary)}
+
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+    .proj{padding:14px;border-radius:12px;background:transparent;border:1px dashed rgba(0,0,0,0.06)}
+    .proj h4{margin:0 0 6px 0}
+
+    footer{margin-top:30px;padding:18px;border-radius:12px;background:var(--card);display:flex;justify-content:space-between;align-items:center}
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .projects{grid-template-columns:1fr}
+      .avatar{width:84px;height:84px}
     }
 
-    body {
-      font-family: "Poppins", sans-serif;
-      background-color: var(--gray);
-      color: var(--black);
-      line-height: 1.7;
-      scroll-behavior: smooth;
-    }
-
-    header {
-      background-color: var(--black);
-      color: var(--gold);
-      text-align: center;
-      padding: 25px 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    header h1 {
-      font-size: 2rem;
-      font-weight: 600;
-    }
-
-    nav {
-      margin-top: 10px;
-    }
-
-    nav a {
-      color: var(--gold);
-      margin: 0 12px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: white;
-    }
-
-    section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      color: var(--black);
-      font-size: 2rem;
-      margin-bottom: 35px;
-      position: relative;
-    }
-
-    h2::after {
-      content: "";
-      width: 60px;
-      height: 3px;
-      background: var(--gold);
-      display: block;
-      margin: 8px auto 0;
-    }
-
-    /* About */
-    #about p {
-      text-align: center;
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: auto;
-      color: #333;
-    }
-
-    /* Skills */
-    #skills .skill {
-      margin: 20px 0;
-    }
-
-    .skill-name {
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
-
-    .skill-bar {
-      background-color: #eaeaea;
-      border-radius: 30px;
-      overflow: hidden;
-      height: 18px;
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--black));
-      width: 0;
-      transition: width 1s ease-in-out;
-    }
-
-    /* Languages */
-    .languages-section {
-      background-color: white;
-      border-radius: 20px;
-      padding: 60px 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    .language-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 25px;
-    }
-
-    .language-card {
-      background: var(--gray);
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s;
-    }
-
-    .language-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .language-card h3 {
-      margin-bottom: 10px;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 10px;
-      background-color: #ddd;
-      border-radius: 8px;
-      margin: 10px 0;
-      overflow: hidden;
-    }
-
-    .progress {
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--black));
-      border-radius: 8px;
-    }
-
-    /* Projects */
-    #projects {
-      background-color: #fff;
-      border-radius: 20px;
-      padding: 60px 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 40px;
-    }
-
-    .download-btn {
-      background: linear-gradient(90deg, var(--gold), var(--black));
-      color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: 0.3s;
-    }
-
-    .download-btn:hover {
-      transform: scale(1.05);
-      background: linear-gradient(90deg, var(--black), var(--gold));
-    }
-
-    .project {
-      margin-bottom: 50px;
-    }
-
-    .project h3 {
-      font-size: 1.3rem;
-      color: #111;
-      margin-bottom: 10px;
-    }
-
-    .project p {
-      margin-bottom: 15px;
-      color: #444;
-    }
-
-    .dashboard-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-    }
-
-    .dashboard-gallery img {
-      width: 100%;
-      max-width: 450px;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s;
-    }
-
-    .dashboard-gallery img:hover {
-      transform: scale(1.03);
-    }
-
-    /* Contact */
-    #contact {
-      text-align: center;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
-
-    .contact-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: var(--gold);
-      color: var(--black);
-      font-weight: 600;
-      padding: 12px 18px;
-      border-radius: 10px;
-      width: 100%;
-      max-width: 350px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .contact-links a:hover {
-      background: var(--black);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
-
-    footer {
-      background-color: var(--black);
-      color: var(--gold);
-      text-align: center;
-      padding: 25px 10px;
-      margin-top: 60px;
-    }
-
-    @media (max-width: 768px) {
-      .section-header {
-        flex-direction: column;
-        gap: 15px;
-      }
-      nav a {
-        display: inline-block;
-        margin: 5px;
-      }
-    }
-
-/* Floating Chatbot */
-.chatbot-container {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 9999;
-  font-family: "Poppins", sans-serif;
-}
-
-.chat-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, gold, black);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: transform 0.3s;
-}
-
-.chat-icon:hover {
-  transform: scale(1.1);
-}
-
-.chat-window {
-  display: none;
-  position: absolute;
-  bottom: 75px;
-  right: 0;
-  width: 340px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  overflow: hidden;
-  font-size: 0.9rem;
-}
-
-.chat-header {
-  background: black;
-  color: gold;
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chat-header span {
-  cursor: pointer;
-  font-size: 1.2rem;
-}
-
-.chat-body {
-  padding: 15px;
-  background-color: #f9f9f9;
-  max-height: 350px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.bot-message {
-  background: #ffd700;
-  color: black;
-  padding: 10px 15px;
-  border-radius: 15px;
-  align-self: flex-start;
-  max-width: 80%;
-}
-
-.user-message {
-  background: #000;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 15px;
-  align-self: flex-end;
-  max-width: 80%;
-}
-
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.option-btn {
-  background: black;
-  color: gold;
-  border: none;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.option-btn:hover {
-  background: gold;
-  color: black;
-}
-/* Floating Resume Button (bottom-left) */
-.floating-download-btn {
-  position: fixed;
-  bottom: 25px;
-  left: 25px; /* Changed from right:25px to left:25px */
-  background: linear-gradient(135deg, gold, black);
-  color: white;
-  padding: 16px 18px;
-  border-radius: 50%;
-  font-size: 22px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  z-index: 1000;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.floating-download-btn:hover {
-  transform: scale(1.1);
-  background: linear-gradient(135deg, black, gold);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-}
-
-
-/* Normal Download Button (inline for projects) */
-.download-btn {
-  background: linear-gradient(90deg, gold, black);
-  color: white;
-  text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: 0.3s;
-}
-
-.download-btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(90deg, black, gold);
-}
-/* Timeline Section */
-.timeline-section {
-  background-color: #f9f9f9;
-  padding: 60px 20px;
-  color: #222;
-}
-
-.timeline-section h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 50px;
-  color: #000;
-}
-
-.timeline-container {
-  position: relative;
-  max-width: 900px;
-  margin: auto;
-  padding-left: 20px;
-}
-
-.timeline-container::before {
-  content: '';
-  position: absolute;
-  left: 30px;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: gold;
-  border-radius: 2px;
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 40px;
-  padding-left: 60px;
-}
-
-.timeline-item:last-child {
-  margin-bottom: 0;
-}
-
-.timeline-year {
-  position: absolute;
-  left: 0;
-  width: 60px;
-  text-align: right;
-  font-weight: bold;
-  color: #000;
-}
-
-.timeline-content {
-  background: #fff;
-  padding: 12px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-
-.timeline-item:hover .timeline-content {
-  transform: translateX(5px);
-}
-
-.timeline-content p {
-  margin: 0;
-  font-size: 1rem;
-  color: #444;
-}
-.timeline-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: gold;
-  margin-bottom: 5px;
-}
-
+    /* small helpers */
+    .muted{color:var(--muted)}
+    a {color:inherit;text-decoration:none}
   </style>
 </head>
-
 <body>
-  <header>
-    <h1>Sai Kyal Sin Tun</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#languages">Languages</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      Hello! I’m <b>Sai Kyal Sin Tun 赵成勇 ไกรสร</b>, a passionate Data Analyst who enjoys turning complex datasets into meaningful insights. I specialize in <b>Excel, Power BI, Python, and SQL</b> — with a focus on data storytelling and visualization for better business decision-making.
-    </p>
-  </section>
-
-
-
-  <section id="timeline" class="timeline-section">
-  <h2>Life & Career Timeline</h2>
-  <div class="timeline-container">
-
-    <div class="timeline-item">
-      <div class="timeline-year">2020</div>
-      <div class="timeline-content">
-        <h3 class="timeline-title">Starting Graphic Design</h3>
-        <p>Started Graphic Design journey and took freelance gigs to gain experience.</p>
+  <div class="container" id="page">
+    <header>
+      <div class="brand">
+        <img src="images/cv.jpg" alt="portrait" class="avatar">
+        <div>
+          <h1>Sai Kyal Sin Tun <span class="muted">| 赵成勇 | ไกรสร</span></h1>
+          <div class="meta">24 years old • Born 15.11.2001 • Data Analyst & UI/UX Designer</div>
+        </div>
       </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-year">2021</div>
-      <div class="timeline-content">
-        <h3 class="timeline-title">UI/UX Exploration</h3>
-        <p>Focused on Graphic Design and started exploring UI/UX design principles.</p>
+      <div class="controls">
+        <button class="outline" id="themeToggle">Toggle Light / Dark</button>
+        <a class="btn" href="https://drive.google.com/file/d/1ui28Zp-ogTFTlzpfpgGZJH6KZ43DXJ56/view" target="_blank">Download Resume</a>
+        <a class="outline" id="projDownload" href="#">Download Projects</a>
       </div>
-    </div>
+    </header>
 
-    <div class="timeline-item">
-      <div class="timeline-year">2022</div>
-      <div class="timeline-content">
-        <h3 class="timeline-title">Digital Art Development</h3>
-        <p>Expanded skills with Digital Drawing and Digital Art to support Graphic Design & UI/UX projects.</p>
+    <section class="hero">
+      <div class="card intro">
+        <h2>Introduction</h2>
+        <p>Hello — I'm <strong>Sai Kyal Sin Tun</strong>, a data analyst and UI/UX designer who blends data-driven thinking with human-centered design. I use SQL, Python and modern analytics tools to uncover insights and create visual stories, while crafting intuitive interfaces and prototypes in Figma and Adobe XD. Comfortable working across English, Chinese, Thai and Burmese, I enjoy turning complex problems into clear decisions and delightful experiences.</p>
+
+        <div class="skills">
+          <div class="skill">Chinese: Conversational</div>
+          <div class="skill">English: Fluent</div>
+          <div class="skill">Thai: Conversational</div>
+          <div class="skill">Burmese: Native</div>
+          <div class="skill">Korean: Basic</div>
+        </div>
+
+        <h3 style="margin-top:14px">Hard Skills</h3>
+        <p class="muted">Analysis Tools: Excel, PowerBI, SQL, Python, Git/GitHub</p>
+        <p class="muted">Web & UI: HTML, CSS, WordPress, Figma, Adobe XD</p>
+        <p class="muted">Design Tools: Photoshop, Illustrator, InDesign, Canva</p>
+        <p class="muted">UML & System Design: draw.io, Lucidchart — Class, Flow, Activity, Use Case diagrams</p>
+
+        <h3 style="margin-top:14px">Soft Skills</h3>
+        <ul class="muted">
+          <li>Problem solving and critical thinking</li>
+          <li>Communication across multicultural teams</li>
+          <li>Time management and organization</li>
+          <li>Empathy-driven user research</li>
+        </ul>
+
       </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="timeline-year">2023</div>
-      <div class="timeline-content">
-        <h3 class="timeline-title">University & Data Passion</h3>
-        <p>Started studying at Rangsit University, ICT Major; passionate about Front-end, UI/UX, and Data Analysis.</p>
+      <aside class="card" style="height:100%">
+        <h3>Contact</h3>
+        <div class="muted">Phone: <a href="tel:+66998568107">0998568107</a></div>
+        <div class="muted">GitHub: <a href="https://github.com/saikyalsintun/Portfolio" target="_blank">saikyalsintun</a></div>
+        <div class="muted">Portfolio: <a href="https://saikyalsintun.github.io/portfolio-website/" target="_blank">Live site</a></div>
+        <div class="muted">LinkedIn: <a href="https://www.linkedin.com/in/saikyalsintun/" target="_blank">saikyalsintun</a></div>
+        <div class="muted">Line: <a href="https://line.me/ti/p/~saikyalsintun" target="_blank">Chat on LINE</a></div>
+        <div class="muted">Drive Resume: <a href="https://drive.google.com/file/d/1ui28Zp-ogTFTlzpfpgGZJH6KZ43DXJ56/view" target="_blank">View</a></div>
+
+        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
+        <h4 style="margin:6px 0">Project Counts</h4>
+        <div style="display:flex;gap:8px;flex-direction:column">
+          <div class="stat" style="padding:8px;border-radius:8px;background:var(--glass)">UI/UX Project Count <div class="n">3+</div></div>
+          <div class="stat" style="padding:8px;border-radius:8px;background:var(--glass)">Data Analysis Project Count <div class="n">4+</div></div>
+          <div class="stat" style="padding:8px;border-radius:8px;background:var(--glass)">Machine Learning Project Count <div class="n">2+</div></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="projects">
+      <div class="card">
+        <h3>Data Analysis — Summary</h3>
+        <p>I focus on transforming messy datasets into clear, actionable insights. My workflow combines data cleaning with exploratory analysis, statistical summaries, and interactive dashboards to help stakeholders make data-driven decisions. I use Python (pandas), SQL, Excel and Power BI to build reproducible analyses and visualizations.</p>
+
+        <h4>Projects</h4>
+        <div class="proj"><a href="files/..."><img src="images/2.jpg" alt="Project Image" style="width:100%;border-radius:8px;margin-bottom:6px;"></a><h4>DataDNA — Consumer Financial Complaints Dataset</h4><p class="muted">Exploratory analysis of consumer complaints, categorization, and trend identification with visualization outputs.</p></div>
+        <div class="proj"><a href="files/FP20_StudentPerformance_Final.pbix"></a><img src="images/1.jpg" alt="Project Image" style="width:100%;border-radius:8px;margin-bottom:6px;"></a><h4>FP20 Analytic Challenge x ZoomChart (Student Assessment)</h4><p class="muted">Student performance analysis and interactive visual assessment dashboards.</p></div>
+        <div class="proj"><a href="files/November 2025 DataDNA.pbix"></a><img src="images/3.png" alt="Project Image" style="width:100%;border-radius:8px;margin-bottom:6px;"></a><h4>November 2025 — E-commerce Analytics Challenge</h4><p class="muted">Sales funnel & cohort analysis for an e-commerce dataset (competition entry).</p></div>
+        <div class="proj"><a href="files/Field Trip.pbix"></a><img src="images/0.png" alt="Project Image" style="width:100%;border-radius:8px;margin-bottom:6px;"></a><h4>10 Year Field Trip Budget by Department</h4><p class="muted">Longitudinal budget planning and forecasting using historical expense data.</p></div>
       </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="timeline-year">2025</div>
-      <div class="timeline-content">
-        <h3 class="timeline-title">Hackathon Participation</h3>
-        <p>Participated in Mobile App Development Hackathon.</p>
+      <div class="card">
+        <h3>UI / UX — Summary</h3>
+        <p>I design intuitive interfaces and flows that bridge user needs with business goals. I create wireframes, hi-fi prototypes and user journeys, focusing on accessibility and clarity across platforms (web, mobile, wearables).</p>
+
+        <h4>Projects</h4>
+        <div class="proj"><a href="https://www.figma.com/design/L4RHHikuwQI9su2VdE5Uff/Mobile-Development?node-id=0-1&p=f&t=EJx8Fr0HCnHXUyW7-0"><img src="images/ui1.png" alt="Project Image" style="width:100%;border-radius:8px;margin-bottom:6px;"></a><h4>CimSo — Golf Club Membership App (2025)</h4><p class="muted">Full mobile app design for membership management, booking and club communications.</p></div>
+        <div class="proj"><a href="https://drive.google.com/file/d/19pzLUHReKI91sG4Ey-IKiv96BGVe1Gyt/view?usp=sharing"><img src="images/ui2.png" alt="Project Image" style="width:100%;border-radius:8px;margin-bottom:6px;"></a><h4>Health2Go — Multi-platform Health App</h4><p class="muted">Cross-platform healthcare app with reporting, watch integration and exportable reports (Web, Watch, Phone, Word).</p></div>
+        <div class="proj"><a href="https://www.figma.com/design/n7wFnAEGqNdgphF8B4NBK7/Untitled?node-id=0-1&p=f&t=jZOAMCcaWoFRj97T-0"><img src="images/ui3.png" alt="Project Image" style="width:100%;border-radius:8px;margin-bottom:6px;"></a><h4>System Design Analysis — E-commerce UX (Admin & Customer)</h4><p class="muted">User experience analysis and redesign for admin and customer flows on an e-commerce platform.</p></div>
       </div>
-    </div>
+    </section>
 
-    <div class="timeline-item">
-      <div class="timeline-year">2025 Q2</div>
-      <div class="timeline-content">
-        <h3 class="timeline-title">Data Analysis Journey</h3>
-        <p>Started learning Data Analysis and exploring analytics tools like Excel and Power BI.</p>
+    <footer>
+      <div class="links">
+        <a class="outline" href="https://github.com/saikyalsintun/Portfolio" target="_blank">GitHub</a>
+        <a class="outline" href="https://saikyalsintun.github.io/portfolio-website/" target="_blank">Portfolio</a>
+        <a class="outline" href="https://www.linkedin.com/in/saikyalsintun/" target="_blank">LinkedIn</a>
+        <a class="outline" href="https://line.me/ti/p/~saikyalsintun" target="_blank">Line</a>
       </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-year">2025 Q4</div>
-      <div class="timeline-content">
-        <h3 class="timeline-title">Looking for Internship</h3>
-        <p>Preparing to apply for internships in Data Analysis and Front-end development.</p>
-      </div>
-    </div>
-
+      <div class="muted">Built with HTML • CSS • JavaScript — Light & Dark mode</div>
+    </footer>
   </div>
-</section>
-
-
-
-
-  <section id="skills">
-    <h2>Technical Skills</h2>
-    <div class="skill">
-      <div class="skill-name">Excel & Power BI</div>
-      <div class="skill-bar"><div class="skill-bar-fill" data-fill="60%"></div></div>
-    </div>
-    <div class="skill">
-      <div class="skill-name">Python & SQL</div>
-      <div class="skill-bar"><div class="skill-bar-fill" data-fill="40%"></div></div>
-    </div>
-    <div class="skill">
-      <div class="skill-name">Statistics & Data Analysis</div>
-      <div class="skill-bar"><div class="skill-bar-fill" data-fill="50%"></div></div>
-    </div>
-  </section>
-
-  <section id="languages" class="languages-section">
-    <h2>🌏 Language Skills</h2>
-    <div class="language-container">
-      <div class="language-card">
-        <h3>🇨🇳 Chinese (中文)</h3>
-        <div class="progress-bar"><div class="progress" style="width: 50%;"></div></div>
-        <p>Intermediate – Normal communication and workplace speaking</p>
-      </div>
-      <div class="language-card">
-        <h3>🇹🇭 Thai (ไทย)</h3>
-        <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
-        <p>General – Fluent communication and writing</p>
-      </div>
-      <div class="language-card">
-        <h3>🇬🇧 English</h3>
-        <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
-        <p>Advanced – Professional fluency in speaking and writing</p>
-      </div>
-      <div class="language-card">
-        <h3>🇲🇲 Burmese (မြန်မာ)</h3>
-        <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
-        <p>Fluent – Native-level communication and comprehension</p>
-      </div>
-    </div>
-  </section>
-
-  <br/><br/><br/><br/>
-  <section id="projects">
-    <div class="section-header">
-      <h2>Projects & Dashboard Visuals</h2>
-      <a href="files/MyPortfolioProject.rar" download class="download-btn">
-        <i class="fas fa-download"></i> Download Files
-      </a>
-    </div>
-
-    <div class="project">
-      <h3>📈 Student Assessment Dashboard</h3>
-      <p>Developed a dashboard in Power BI to track student performance, passing rates, and top scorers over 3 years.</p>
-      <div class="dashboard-gallery">
-        <img src="images/First.png" alt="Student Dashboard 1" />
-        <img src="images/Second.png" alt="Student Dashboard 2" />
-      </div>
-    </div>
-
-    <div class="project">
-      <h3>📊 Consumer Complaint Dashboard</h3>
-      <p>Identified the most common consumer complaints by company and visualized issue resolution performance.</p>
-      <div class="dashboard-gallery">
-        <img src="images/ConsumerComplaint.png" alt="Complaint Dashboard 1" />
-        <img src="images/ConsumerComplaint2.png" alt="Complaint Dashboard 2" />
-      </div>
-    </div>
-
-    <div class="project">
-      <h3>E‑commerce Analytics Challenge</h3>
-      <p>This dashboard provides a consolidated view of key performance metrics across events, customers, and products for a global software retailer. It highlights revenue trends, customer behavior, refund patterns, and product performance to help identify high-value customers and understand what drives overall sales.</p>
-      <div class="dashboard-gallery">
-        <img src="images/November2025_1.png" alt="november2025" />
-        <img src="images/November2025_2.png" alt="november2025_2" />
-      </div>
-    </div>
-
-    <div class="project">
-      <h3>💰 Ten-Year Budget Analysis</h3>
-      <p>Analyzed departmental field trip budgets across a decade to find spending inefficiencies and trends.</p>
-      <div class="dashboard-gallery">
-        <img src="images/FieldTrip.png" alt="Field Trip Dashboard 1" />
-        <img src="images/FieldTrip2.png" alt="Field Trip Dashboard 2" />
-      </div>
-    </div>
-
-
-
-    
-  </section>
-
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <div class="contact-links">
-      <a href="https://www.linkedin.com/in/saikyalsintun/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-      <a href="https://github.com/saikyalsintun/Portfolio.git" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-      <a href="https://line.me/ti/p/~saikyalsintun" target="_blank"><i class="fab fa-line"></i> Line</a>
-      <a href="mailto:saikyalsintun.mdy@gmail.com"><i class="fas fa-envelope"></i> Gmail</a>
-      <a href="tel:+66998568107"><i class="fas fa-phone"></i> +66 998568107</a>
-      <a href="#"><i class="fas fa-map-marker-alt"></i> Bangkok, Thailand</a>
-      <a href="files/Sai Kyal Sin Tun CV 2025.pdf" download class="floating-download-btn"><i class="fas fa-file-download"></i> Download Resume</a>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2025 Saikyalsin Tun | Data Analyst Portfolio
-  </footer>
-<!-- Floating Chatbot -->
-<div class="chatbot-container" id="chatbot">
-  <div class="chat-icon" id="chatToggle">
-    <i class="fas fa-comments"></i>
-  </div>
-
-  <div class="chat-window" id="chatWindow">
-    <div class="chat-header">
-      <h4>Meet Sai’s Assistant 🤖</h4>
-      <span id="closeChat">&times;</span>
-    </div>
-
-    <div class="chat-body" id="chatBody">
-      <div class="bot-message">Hi 👋 I'm Sai's assistant. What would you like to know?</div>
-      <div class="options">
-        <button class="option-btn" data-option="skills">Show Sai Kyal’s Skills</button>
-        <button class="option-btn" data-option="experience">His Experience</button>
-        <button class="option-btn" data-option="projects">His Projects</button>
-        <button class="option-btn" data-option="contact">His Contact</button>
-      </div>
-    </div>
-  </div>
-</div>
 
   <script>
-    // Animate skill bars
-    window.addEventListener("load", () => {
-      document.querySelectorAll(".skill-bar-fill").forEach((fill) => {
-        fill.style.width = fill.dataset.fill;
-      });
+    const root = document.documentElement;
+    const page = document.getElementById('page');
+    const themeToggle = document.getElementById('themeToggle');
+    // initialize theme from localStorage or system
+    const saved = localStorage.getItem('theme');
+    function applyTheme(t){
+      if(t==='dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+    }
+    if(saved) applyTheme(saved);
+    else {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark? 'dark':'light');
+    }
+
+    themeToggle.addEventListener('click', ()=>{
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark? 'dark':'light');
     });
 
-   // Elements
-const chatToggle = document.getElementById('chatToggle');
-const chatWindow = document.getElementById('chatWindow');
-const closeChat = document.getElementById('closeChat');
-const chatBody = document.getElementById('chatBody');
-
-// Toggle open/close
-chatToggle.addEventListener('click', () => {
-  chatWindow.style.display = 'block';
-});
-
-closeChat.addEventListener('click', () => {
-  chatWindow.style.display = 'none';
-});
-
-// Responses dictionary
-const botReplies = {
-  skills: "🧠 Sai Kyal is skilled in HTML, CSS, Power BI, and Data Analysis. He also knows Graphic Design and UIUX design system. Has Experience in FIgma Design and Also compete in Hackathon. He can speak four languages so that a plus. ",
-  experience: "💼 Sai has experience in full-stack web development, Power BI dashboard design, and data-driven reporting. He also works on graphic design under 'One Touch Art.'",
-  projects: "🚀 Some of Sai’s projects include: 1️⃣ Blood Bank DataBase System – AI Chat Bot For RSU Library, 2️⃣ One Touch Art – a graphic design service, and 3️⃣ Student Assessment Dashboard – a Power BI analytics project: Consumer Complaints Project Dashboard",
-  contact: "📞 You can reach Sai via email: saikyalsintun.mdy@gmail.com or on LinkedIn: https://www.linkedin.com/in/saikyalsintun/"
-};
-
-// Option click logic
-document.querySelectorAll('.option-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const option = btn.dataset.option;
-    addMessage(btn.textContent, 'user');
-    setTimeout(() => addMessage(botReplies[option], 'bot'), 600);
-  });
-});
-
-// Add message to chat
-function addMessage(text, sender) {
-  const msgDiv = document.createElement('div');
-  msgDiv.classList.add(`${sender}-message`);
-  msgDiv.textContent = text;
-  chatBody.appendChild(msgDiv);
-  chatBody.scrollTop = chatBody.scrollHeight;
-}
-
+    // Project download placeholder — user will replace href
+    const projDownload = document.getElementById('projDownload');
+    projDownload.addEventListener('click',(e)=>{
+      if(projDownload.getAttribute('href') === '#'){
+        e.preventDefault();
+        alert('Project download link not set yet. You can edit the HTML and replace the # with your file URL.');
+      }
+    });
   </script>
 </body>
 </html>
